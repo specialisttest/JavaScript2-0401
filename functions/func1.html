@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Функции JS</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        sayHello('Владимир', 33);
+
+        function sayHello(name, age) {
+            console.log ( arguments );
+            // 'abc'
+            // "abc " + name
+            // `abc ${name}`
+            // false rules: false, null, undefined, 0, NaN, ""
+
+            //if (!age) age = "возраст не указан";
+            //console.log(`Hello, ${name} - ${age}!`);
+            //arguments[0]
+            //arguments[1]
+
+            if (age)
+                console.log(`Hello, ${name} - ${age}!`);
+            else
+                console.log(`Hello, ${name}!`);
+        }
+
+        sayHello('Александр');
+        sayHello('Владимир', 33, "брат");
+
+        // saySomething("abc"); // error
+
+        // function saySomething() {
+        let saySomething = function () {
+            console.log("Something...");
+            for(let i=0; i< arguments.length; i++)
+                console.log('\t' + arguments[i]);
+        }
+        let funcVar = saySomething;
+        console.log(funcVar);
+        console.log(typeof funcVar);
+
+        saySomething("abc");
+
+        /*function funcWithRestParams() {
+            let name = arguments[0];
+            let age  = arguments[1];
+            console.log(`Hello from Rest params func, ${name} - ${age}!`);
+            for(let i=2; i < arguments.length; i++)
+                console.log('\t' + arguments[i]);
+        }*/
+
+        function funcWithRestParams(name, age, ...restParams) {
+            console.log(`Hello from Rest params func, ${name} - ${age}!`);
+            for(let i=0; i < restParams.length; i++)
+                console.log('\t' + restParams[i]);
+        }
+
+        // immediate function - функция немедленного выполнения
+        (function (){
+            let message =  'Anonymous function';
+            console.log(message);
+        })();
+
+        // arrow function - стрелочная функция
+        let square = x => x * x ;
+        
+        let nums = [56, 11, 3, 9, 73,  5, 1];
+
+        function compareNums(a, b) {
+            /*if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;*/
+            return a - b;
+        }
+
+        console.log(nums.join(", "))
+        //nums.sort() // sort as string
+        nums.sort( (a, b) => a - b );
+        console.log(nums.join(", "))
+       
+        nums.sort( (a, b) => b - a );
+        console.log(nums.join(", "))
+        
+
+	</script>
+</head>
+
+<body>
+	<h1>Функции JS</h1>
+	<div id="demoLinks">
+		<a href="javascript:sayHello('Sergey', 43)">Hello Sergey</a>
+        <a href="javascript:sayHello('Andrey')">Hello Andrey</a>
+        <a href="javascript:saySomething('Abc', 42, true)">Say something</a>
+        <a href="javascript:funcWithRestParams('Alex', 42, true, 57, 'cde')">Say something Rest</a>
+        <a href="javascript:console.log( square(3) )">Square(3)</a>
+	</div>
+</body>
+</html>

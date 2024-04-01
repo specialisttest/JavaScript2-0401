@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Функции JS</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        /*function formalHello() {
+            console.log('How are you?');
+        }
+        function casualHello() {
+            console.log("What's up?");
+        }
+
+        let sayHello = function(type, formalFunc, casualFunc) {
+            if (type === 'formal')
+                formalFunc();
+            else if (type === 'casual')
+                casualFunc();
+        }*/
+
+        // higher order function
+        let sayHello2 = function(type) {
+            if (type === 'formal')
+                return ()=>console.log('How are you?');
+            else if (type === 'casual')
+                return ()=>console.log("What's up?");
+        }
+
+        //sayHello('casual', formalHello, casualHello);
+        //let resultFunc = sayHello2('casual', formalHello, casualHello);
+        //resultFunc();
+        sayHello2('casual')();
+        console.log(typeof(sayHello2));
+
+    </script>
+</head>
+
+<body>
+	<h1>Функции JS</h1>
+	<div id="demoLinks">
+
+	</div>
+</body>
+</html>        

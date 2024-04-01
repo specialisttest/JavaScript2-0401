@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Функции JS</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        /*function volume(w, h, d) {
+            return w * h * d;
+        }*/
+
+        function volume(w) {
+            return (h) => {
+                return (d) => {
+                    return w * h * d;
+                }
+            }
+        }
+
+        //console.log( volume(2, 5, 7) )
+        console.log( volume(2)(5)(7) );
+
+        const volumeWidth2 = volume(2); // w = 2
+        const volumeWidth3 = volume(3); // w = 3
+
+        console.log( volumeWidth2(5)(7) );
+        console.log( volumeWidth2(6)(7) );
+
+        function priceWithDiscount(price, discount) {
+            return price*(100-discount) / 100;
+
+        }
+
+        console.log( priceWithDiscount(1000, 10) ); // 900
+        console.log( priceWithDiscount(2000, 10) ); // 1800
+
+        function discount(discount) {
+            return price => price*(100-discount) / 100;
+        }
+
+        const priceWith10Discount = discount(10);
+        const priceWith20Discount = discount(20);
+
+        console.log( priceWith10Discount(1000) ); // 900
+        console.log( priceWith10Discount(2000) ); // 1800
+
+        console.log( priceWith20Discount(1000) ); // 800
+        console.log( priceWith20Discount(2000) ); // 1600
+
+
+	</script>
+</head>
+
+<body>
+	<h1>Функции JS</h1>
+	<div id="demoLinks">
+
+	</div>
+</body>
+</html>

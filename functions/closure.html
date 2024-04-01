@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Функции JS</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        
+
+
+        
+        function calc(x)  {
+            
+            let calcAndPrint = function (){
+                let y = x * x;
+
+                let inc = function (){
+                    y += 2;
+                }
+
+
+                let print = function () {
+                    console.log (`y = ${y}`); // closure - замыкание
+                }
+
+                print(); // 16
+                inc();   // y == 18
+                print(); // 18 
+            }
+
+            calcAndPrint();
+        }
+
+
+	</script>
+</head>
+
+<body>
+	<h1>Функции JS</h1>
+	<div id="demoLinks">
+        <a href="javascript:calc(4)">calc(4)</a>
+
+	</div>
+</body>
+</html>        

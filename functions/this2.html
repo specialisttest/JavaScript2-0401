@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Функции JS</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+
+
+
+        // функция конструктор
+        function Book(title, price){
+            this.title = title;
+            this.price = price;
+        }
+
+        let b1 = new Book('Война и мир', 1000); // this == b1
+        b1.show= function (discount) {
+                if (this.price && discount){
+                    let price = this.price*(100 - discount) / 100;
+                    console.log(`${this.title} - ${price}`);
+                }
+                else
+                    console.log(`${this.title} - ${this.price}`);
+                console.log(this)
+            }
+        b1.show(20); // this === b1
+
+        let b2 = new Book('Над пропастью во ржи', 200);
+        b2.show= discount => {
+                if (this.price && discount){
+                    let price = this.price*(100 - discount) / 100;
+                    console.log(`${this.title} - ${price}`);
+                }
+                else
+                    console.log(`${this.title} - ${this.price}`);
+                console.log(this)
+            }
+
+        b2.show(); // this == Window (global) !!!
+        
+
+
+
+
+	</script>
+</head>
+
+<body>
+	<h1>Функции JS</h1>
+	<div id="demoLinks">
+
+	</div>
+</body>
+</html>
