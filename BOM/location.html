@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект location</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+		//location.href
+		// URL URI
+		// https://www.specialist.ru:81/web/js.html?q=js#hash
+
+
+		function demoReload()
+		{
+			location.reload();
+		}
+		function demoAssign()
+		{
+			//location.href = 'http://www.specialist.ru';
+			
+			var url = prompt("Введите URL", "http://www.specialist.ru");
+			if (url) 
+				location.assign(url);
+				//location.href = url
+		}
+		function demoReplace()
+		{
+			var url = prompt("Введите URL", "http://www.specialist.ru");
+			if (url) 
+				location.replace(url);
+		}
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект location</h1>
+	<pre>
+	<script type="text/javascript">
+		document.writeln();
+		for (var property in location)
+		{
+			document.write("<strong>" + property + "</strong>: ");
+			document.writeln(location[property]);
+		}
+	</script>
+	</pre>
+	<div id="demoLinks">
+		 <a href="javascript:demoReload()">reload</a>
+		 <a href="javascript:demoAssign()">assign</a>
+		 <a href="javascript:demoReplace()">replace</a>
+	</div>
+</body>
+</html>

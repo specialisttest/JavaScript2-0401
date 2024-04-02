@@ -1,0 +1,179 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Методы массивов</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        let arr = [ 123, true, "abc", {name:"Sergey"}];
+        console.log(arr);
+        arr.push(28);
+        console.log(arr);
+
+        const books = [
+            { title:'Война и мир', price: 1000},
+            { title: 'Лестница в небо', price : 500},
+            { title: 'Улитка на склоне', price : 300},
+            { title: 'Звёзды - холодные игрушки', price : 450}
+        ];
+        for(let i=0; i < books.length; i++)
+            if(books[i].price >= 500) 
+                console.log(books[i].title);
+
+        // some()
+        const myArr = ['hello', 'warn', 'error', 'abc', 'error'];
+        console.log(  myArr.some( t => typeof(t) === 'string' && t.length>=5 ) );
+
+        /*let result = false;
+        for(let i=0; i < myArr.length; i++)
+            if (typeof(myArr[i]) === 'string' && myArr[i].length>=6){
+                result = true;
+                break;
+            }
+        console.log(result)*/
+
+
+
+        /*let result = false;
+        for(let i = 0; i < books.length; i++)
+            if (books[i].price > 1000) {
+                result = true; 
+                break;
+            }
+
+        console.log( result ); */
+
+        console.log (  books.some( book => book.price > 1000) );
+
+        // reduce
+        const myNums = [1,2,3,4,5,6];
+        console.log( myNums.reduce( (total, value) => total * value) ); // 1*2*3*4*5*6
+        /*
+            (1, 2) = 2
+            (2, 3) = 6
+            (6, 4) = 24
+        */
+
+        console.log( myArr.join(";") );
+        console.log( myArr.reduce( (t,s) => t +';'+s ) );
+
+
+        // every
+        console.log( myArr.every(  s => typeof(s) === 'string' && s.length >= 5 ) );
+
+        // map
+        /*let prices = []
+        for(let i = 0; i < books.length; i++)
+            prices.push( books[i].price );
+
+        console.log (prices);*/
+        console.log (  books.map( book=> book.price ) );
+        
+        
+        let summa =
+        books.
+            map( book=> book.price ).
+            reduce( (t, p) => t+p );
+
+        console.log( summa );
+
+        // flat
+        const matrix = [
+            [1,2,3],
+            [4,5]
+        ];
+
+        console.log ( matrix );
+        console.log ( matrix.flat() );
+        console.log ( matrix.flat().reduce( (t, p) => t+p ) );
+
+        // filter
+        /*
+        let booksOver500 = []
+        for(let i = 0; i < books.length; i++)  
+            if (books[i].price >= 500)
+                booksOver500.push(books[i]);
+
+        console.log (booksOver500)*/
+
+        console.log( books.filter( book => book.price >= 500) );
+        
+        // forEach
+        books.forEach( book => console.log(`${book.title} : ${book.price}`) );
+
+        books
+            .filter( book => book.price >= 500)
+            .map( book => `${book.title} : ${book.price}`)
+            .forEach( s => console.log(s) );
+
+        // findIndex
+        console.log( myArr.findIndex( s => s === 'error' ) );
+
+        // find
+        console.log( books.find( b => b.price === 1000 ) );
+
+        // sort
+        //books.sort( (b1, b2) => b1.price - b2.price );
+
+        let filteredBooks = [];
+        for(let i=0; i < books.length; i++)
+            if (books[i]>=500)
+                filteredBooks.push(books[i]);
+
+        filteredBooks.sort((b1, b2) => b1.title > b2.title ? 1 : -1 );
+        for(let i=0; i < filteredBooks.length; i++)
+            console.log(`${filteredBooks[i].title} : ${filteredBooks[i].price}`)
+        
+        
+        books
+            .filter( book => book.price >= 500)
+            .sort( (b1, b2) => b1.title > b2.title ? 1 : -1 )
+            .map( book => `${book.title} : ${book.price}`)
+            .forEach( console.log );  
+
+        // concat    
+        const myNums2 = [6,7,8,9];
+        const myNums3 = myNums.concat(myNums2)
+        console.log (myNums3 );
+
+        // fill
+        console.log('fill')
+        console.log (myNums );
+        myNums.fill(0, 1, 4); // value, startIndex, endIndex
+        console.log (myNums );
+
+        // includes
+        console.log ( myNums.includes(5) );
+
+        // reverse
+        myNums.push(1);
+        console.log ( myNums );
+        myNums.reverse();
+        console.log ( myNums );
+
+        // flatMap
+
+        //console.log( books.map( b=> [b.price] ).flat() );
+        console.log( books.flatMap( b => [b.price] ) );
+
+
+
+
+
+
+
+
+
+	</script>
+</head>
+
+<body>
+	<h1>Методы массивов</h1>
+	<div id="demoLinks">
+
+	</div>
+</body>
+</html>

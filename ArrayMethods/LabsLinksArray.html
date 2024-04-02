@@ -1,0 +1,48 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Методы массивов</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        const links = [
+            { title:'Specialist', href: 'https://www.specialist.ru', clicks : 0},
+            { title:'Yandex', href: 'https://www.yandex.ru', clicks : 0},
+            { title:'Google', href: 'https://www.google.com', clicks : 0},
+            { title:'Facebook', href: 'https://www.facebook.com', clicks : 0},
+            { title:'VKontakte', href: 'https://www.vk.com', clicks : 0},
+            { title:'RG', href: 'https://www.rg.ru', clicks : 0}
+        ];
+
+        // links.forEach( l => l.clicks = Math.round(Math.random()*99) + 1 );
+
+        let renderLinks = function(){
+                links
+                .map(l => { return {title: l.title, href: l.href, clicks: Math.round(Math.random()*99) + 1 }; })
+                .filter( l => l.clicks >= 50 )
+                .sort( (l1, l2) => l2.clicks - l1.clicks)
+                .map( l => `<a href='${l.href}'>${l.title} (${l.clicks})</a>`)
+                .forEach( s=>document.write(s) );
+        }
+
+
+
+	</script>
+</head>
+
+<body>
+	<h1>Методы массивов</h1>
+	<h2>
+                <script>
+                        document.write("Внешние ссылки");
+                </script>
+        </h2>
+        <div id="demoLinks">
+                <script>renderLinks();</script>
+	</div>
+        
+</body>
+</html>

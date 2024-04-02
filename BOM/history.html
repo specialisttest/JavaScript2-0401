@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект history</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+		function demoLength()
+		{
+			alert("Количество переходов: " + window.history.length);
+		}
+		function demoBack()
+		{
+			//history.back(); //history.go(-1);
+			history.go(-2)
+		}
+		function demoForward()
+		{
+			history.forward(); // history.go(1)
+		}
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект history</h1>
+	<div id="demoLinks">
+		 <a href="javascript:demoLength()">length</a>
+		 <a href="javascript:demoBack()">back</a>
+		 <a href="javascript:demoForward()">forward</a>
+	</div>
+</body>
+</html>

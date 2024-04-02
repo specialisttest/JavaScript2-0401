@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект window. Таймеры</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		a { color: blue }
+		#demoLinks a { display: block }
+	</style>
+	
+	<script type="text/javascript">
+		var timer1, timer2;
+		function demoSetTimeout()
+		{
+			timer1 = window.setTimeout(function(){alert('setTimeout');}, 3000);
+		}
+		function demoSetInterval()
+		{
+			timer2 = window.setInterval(function(){alert('setInterval');}, 2000);
+		}
+		function demoClearTimeout()
+		{
+			window.clearTimeout(timer1);
+		}
+		function demoClearInterval()
+		{
+			window.clearInterval(timer2);
+		}										
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект window. Таймеры</h1>
+	<div id="demoLinks">
+		 <a href="javascript:demoSetTimeout()">setTimeout</a>
+		 <a href="javascript:demoSetInterval()">setInterval</a>
+		 <a href="javascript:demoClearTimeout()">clearTimeout</a>
+		 <a href="javascript:demoClearInterval()">clearInterval</a>
+
+	</div>
+</body>
+</html>

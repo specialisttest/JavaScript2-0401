@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект window. Открытие/закрытие/печать окон</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		a { color: blue }
+		#demoLinks a { display: block }
+	</style>
+	
+	<script type="text/javascript">
+		var myWindow;
+		function demoPrint()
+		{
+			window.print();
+		}
+		function demoFocus()
+		{
+			myWindow.focus();
+		}
+		function demoBlur()
+		{
+			myWindow.blur();	
+		}
+		var myWindow;
+		
+		function demoClose()
+		{
+			myWindow.close();	
+		}
+		
+		function demoOpen3()
+		{
+			open("http://www.google.ru");
+		}
+		function demoOpen2()
+		{
+			window.open("http://www.google.ru",
+				"myWindow",
+				"width=400,height=300,top=100,left=300,menubar=1,toolbar=1");
+		}
+		function demoOpen4()
+		{
+			var wnd = window.open(null,
+				"myWindow",
+				"width=400,height=300,top=100,left=300,menubar=1,toolbar=1");
+				
+			wnd.document.open();
+			wnd.document.write("<html>");
+			wnd.document.write("<head>");
+			wnd.document.write("</head>");
+			wnd.document.write("<body>");
+			wnd.document.write("<h1>");
+			var now = new Date()
+			wnd.document.write(now.toLocaleTimeString());
+			
+			wnd.document.write("</h1>");
+			
+			wnd.document.write("</body>");
+			
+			wnd.document.write("</html>");
+			wnd.document.close();
+		}
+		function demoOpen()
+		{
+			//window.open("http://www.specialist.ru");
+			myWindow = window.open("http://www.specialist.ru",
+				"myWindow",
+				"width=400,height=300,top=100,left=300,menubar=1,toolbar=1");
+			
+			/*if (!openParamStr)
+			{
+				var w = window.open("window-open-close.html");
+			}
+			else
+			{
+				var w = window.open("window-open-close.html", "myWindow", openParamStr);
+			}*/
+		}		
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект window. Открытие/закрытие/печать окон</h1>
+	<div id="demoLinks">
+		 <a href="javascript:demoPrint()">print</a>
+		 <a href="javascript:demoFocus()">focus</a>
+		 <a href="javascript:demoBlur()">blur</a>
+		 <a href="javascript:demoClose()">close</a>
+		 <a href="javascript:demoOpen('')">open</a>
+		 <a href="javascript:demoOpen2('')">open 2</a>
+		 <a href="javascript:demoOpen3('')">open 3</a>
+		 <a href="javascript:demoOpen4('')">open 4</a>
+		 <a href="http://yandex.ru" target="myWindow">open yandex</a>
+	</div>
+	<h2>Параметры, задаваемые при открытии окон</h2>
+	<ul>
+		<li>
+			<a href="javascript:demoOpen('menubar=1')">menubar</a>
+		</li>	
+		<li>
+			<a href="javascript:demoOpen('toolbar=1')">toolbar</a>
+		</li>
+		<li>
+			<a href="javascript:demoOpen('status=1')">status</a>
+		</li>
+		<li>
+			<a href="javascript:demoOpen('width=300, height=300')">width, height</a>
+		</li>
+		<li>
+			<a href="javascript:demoOpen('top=200, left=200, width=300, height=300')">top, left</a>
+		</li>
+		<li>
+			<a href="javascript:demoOpen('fullscreen=1')">fullscreen</a>
+		</li>
+	</ul>
+</body>
+</html>

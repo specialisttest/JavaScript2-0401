@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Smooth animation</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#sq1 {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+
+        }
+		#sq2 {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+
+        }
+	</style>
+	
+
+</head>
+
+<body>
+	<h1>Smooth animation</h1>
+	<div id="sq1">
+	</div>
+	
+    <div id="sq2">
+	</div>    
+    
+	<script type="text/javascript">
+        
+        let p1 = null;
+        let sq1 = document.getElementById('sq1');
+        function step1() {
+            if (!p1) p1 = 10;
+            else p1 += 10;
+            sq1.style.transform = 'translateX(' + Math.min(p1 / 10, 200) + 'px)';
+            if (p1 < 2000)
+                window.setTimeout(step1, 10);
+        }
+        window.setTimeout(step1, 10);
+
+
+        let start = null;
+        let sq2 = document.getElementById('sq2');
+        
+        function step2(timestamp) {
+            if (!start) start = timestamp;
+            var progress = timestamp - start;
+            sq2.style.transform = 'translateX(' + Math.min(progress / 10, 200) + 'px)';
+            if (progress < 2000) {
+                window.requestAnimationFrame(step2);
+            }
+        }
+
+        window.requestAnimationFrame(step2);
+
+	</script>
+</body>
+</html>

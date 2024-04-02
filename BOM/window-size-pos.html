@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект window. Положение и размеры</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<style type="text/css">
+		a { color: blue }
+		#demoLinks a { display: block }
+		#demoLinks { height: 2048px }
+	</style>
+	
+	<script type="text/javascript">
+		function demoMoveTo()
+		{
+			window.moveTo(100, 100);
+		}
+		function demoScrollTo()
+		{
+			window.scrollTo(0, 2048);
+		}
+		function demoResizeTo()
+		{
+			window.resizeTo(300, 300);
+		}
+		function demoMoveBy()
+		{
+			window.moveBy(0, -20);
+		}
+		function demoScrollBy()
+		{
+			window.scrollBy(0, 20);
+		}
+		function demoResizeBy()
+		{
+			window.resizeBy(10, 10);
+		}										
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект window. Положение и размеры</h1>
+	<div id="demoLinks">
+		 <a href="javascript:demoMoveTo()">MoveTo</a>
+		 <a href="javascript:demoScrollTo()">ScrollTo</a>
+		 <a href="javascript:demoResizeTo()">ResizeTo</a>
+		 <a href="javascript:demoMoveBy()">MoveBy</a>
+		 <a href="javascript:demoScrollBy('')">ScrollBy</a>
+		 <a href="javascript:demoResizeBy('')">ResizeBy</a>
+	</div>
+	<div>
+		нижняя часть страницы
+	</div>
+</body>
+</html>

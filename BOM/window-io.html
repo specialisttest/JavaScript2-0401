@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект window. Методы ввода/вывода</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+		function demoAlert()
+		{
+			//window.alert('Сообщение')
+			alert("Это окно alert");
+		}
+		function demoConfirm()
+		{
+			//window.confirm
+			//if (confirm("Вы перестали пить коньяк по утрам?"))
+			
+			
+			var answer = window.confirm("Это окно confirm?");
+			alert(answer);
+		}		
+		function demoPrompt()
+		{
+			//window.prompt
+			var answer = 
+				prompt("Это окно prompt", "Начальное значение");
+			alert(answer);
+		}		
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект window. Методы ввода/вывода</h1>
+	<div id="demoLinks">
+		 <a href="javascript:demoAlert()">alert</a>
+		 <a href="javascript:demoConfirm()">confirm</a>
+		 <a href="javascript:demoPrompt()">prompt</a>
+	</div>
+</body>
+</html>

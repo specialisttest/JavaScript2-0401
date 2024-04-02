@@ -1,0 +1,13 @@
+1.Напишите код печати текущего времени через таймер:
+	var win = open("","win","width=400,height=300");
+    setInterval(
+        function(){
+            win.document.open()
+            win.document.write((new Date().toLocaleTimeString()));
+            win.document.close();
+        }
+    ,1000);
+
+2. Создайте ссылкы "Запустить часики" и "Остановить часики"
+3. Сделать тикающие часики на текущей странице (не открывать новое окно),
+а использовать document.getElementById().innerHTML = ...

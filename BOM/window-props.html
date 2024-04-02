@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект window. Параметры окна</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+		var msg = "hello";
+		
+		//window.alert();
+		//alert()
+		//window.navigator
+		//navigator
+		//if (window.top != window)
+		
+		function demoTime()
+		{
+			var d  = new Date();
+			var time = d.toLocaleTimeString();
+			alert(time);
+		}
+	
+	
+		function demoDefaultStatus()
+		{
+			var d = new Date();
+			window.defaultStatus = d.toLocaleString();
+		}
+		function demoName()
+		{
+			alert("window.name: " + window.name);
+			window.name = "myName";
+		}
+		function demoStatus()
+		{
+			var d = new Date();
+			window.status = d.toLocaleString();		
+		}
+	</script>
+
+</head>
+
+<body>
+	<h1>Объект window. Параметры окна</h1>
+	<div id="demoLinks">
+		<a href="javascript:demoTime()">Time</a>
+		 <a href="javascript:demoDefaultStatus()">defaultStatus</a>
+		 <a href="javascript:demoName()">name</a>
+		 <a href="javascript:demoStatus()">status</a>
+	</div>
+</body>
+</html>
