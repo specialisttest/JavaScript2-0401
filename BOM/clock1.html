@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Часики</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#demoLinks a { display: block; color: blue }
+	</style>
+	
+	<script type="text/javascript">
+        var win, timer;
+
+        function startClock() {
+            if (!timer) {
+                win = open("","clockWin","width=400,height=300");
+                timer = setInterval(
+                    function(){
+                        win.document.open()
+                        win.document.write('<h1>'+(new Date().toLocaleTimeString())+'</h1>');
+                        win.document.close();
+                    }
+                ,1000);
+            }
+        }
+
+        function stopClock() {
+            clearInterval(timer);
+            win.close();
+            timer = null;
+
+        }
+
+	</script>
+</head>
+
+<body>
+	<h1>Часики</h1>
+	<div id="demoLinks">
+		<a href="javascript:startClock()">Запустить часики</a>
+		<a href="javascript:stopClock()">Остановить часики</a>
+	</div>
+</body>
+</html>

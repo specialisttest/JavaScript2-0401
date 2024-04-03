@@ -32,7 +32,7 @@
 		
 		function demoOpen3()
 		{
-			open("http://www.google.ru");
+			open("http://www.specialist.ru");
 		}
 		function demoOpen2()
 		{
@@ -42,11 +42,11 @@
 		}
 		function demoOpen4()
 		{
-			var wnd = window.open(null,
+			var wnd = window.open('',
 				"myWindow",
 				"width=400,height=300,top=100,left=300,menubar=1,toolbar=1");
 				
-			wnd.document.open();
+			wnd.document.open(); // start creating new html
 			wnd.document.write("<html>");
 			wnd.document.write("<head>");
 			wnd.document.write("</head>");
@@ -60,14 +60,14 @@
 			wnd.document.write("</body>");
 			
 			wnd.document.write("</html>");
-			wnd.document.close();
+			wnd.document.close(); // finish creating html
 		}
 		function demoOpen()
 		{
 			//window.open("http://www.specialist.ru");
 			myWindow = window.open("http://www.specialist.ru",
 				"myWindow",
-				"width=400,height=300,top=100,left=300,menubar=1,toolbar=1");
+				"width=400,height=300,top=100,left=300");
 			
 			/*if (!openParamStr)
 			{
