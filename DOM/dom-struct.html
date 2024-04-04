@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Структура DOM</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!-- HTML Комментарии -->
+	<script type="text/javascript">
+		/*
+		** Рекурсивная функция показывающая дочерние узлы указанного узла
+		**	parentNode	- родительский узел
+		**	outputDoc	- документ, в который производится вывод
+		*/
+		function showChildNodes(parentNode, outputDoc)
+		{
+			// Если это текстовый узел - выведем его содержание
+			if (parentNode.nodeType == 3 || parentNode.nodeType == 8)
+			{
+				 outputDoc.write("<li><em>" + parentNode.nodeValue + "</em></li>");
+			}
+			// Если это узел-элемент - выведем его название и ...
+			if (parentNode.nodeType == 1)
+			{
+				outputDoc.write("<li><strong>" + parentNode.nodeName + "</strong><ul>");
+				// вызовем эту функцию для каждого из дочерних узлов
+				for (var i=0; i < parentNode.childNodes.length; i++)
+					showChildNodes(parentNode.childNodes[i], outputDoc)
+				outputDoc.write("</ul></li>");
+			}
+		}
+		/*
+		**	Функция выводит на экран структуру документа
+		*/
+		function showDOM()
+		{
+			var newWindow = window.open("about:blank");
+			newWindow.document.write("<html><body>");
+			showChildNodes(document.documentElement, newWindow.document);
+			newWindow.document.write("</body></h1ml>");
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Структура DOM</h1>
+	<div>
+		<h2>Пример вывода структуры DOM</h2>
+		<p>Этот пример выводит на экран сруктуру документа</p>
+	</div>
+	<div>
+		<h2>Запуск примера</h2>
+		<p>Для запуска примера щелкните <a href="javascript:showDOM()">здесь</a></p>
+	</div>
+
+</body>
+</html>

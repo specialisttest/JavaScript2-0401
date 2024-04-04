@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<title>Структура DOM</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+            /*function collapseUL() {
+                let uls = document.querySelectorAll('ul > li > ul');
+                for(let i=0; i < uls.length; i++)
+                    uls[i].style.display = 'none';
+            }
+
+            function expandUL() {
+                document.querySelectorAll('ul > li > ul')
+                    .forEach( ul => ul.style.display = '');
+            }*/
+            function updateUL(visible) {
+                document.querySelectorAll('ul > li > ul')
+                    .forEach( ul => ul.style.display = visible ? '' : 'none');
+            }
+	</script>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <h3>Живопись</h3>
+            <ul>
+                <li>Рембрандт</li>
+                <li>Айвазовский</li>
+                <li>Шишкин</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Литература</h3>
+            <ul>
+                <li>Пушкин</li>
+                <li>Лермонтов</li>
+                <li>Гоголь</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Скульптура</h3>
+            <ul>
+                <li>Роден</li>
+                <li>Микеланджело</li>
+                <li>Церетели</li>
+            </ul>
+        </li>
+    </ul>
+    <div>
+        <a href="javascript:updateUL(false)">Свернуть</a>&nbsp;
+        <a href="javascript:updateUL(true)">Развернуть</a>
+    </div>
+</body>
+</html>

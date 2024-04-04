@@ -39,7 +39,7 @@ window.addEventListener("load", function() {
 				mapToYou.innerHTML += prop + ' : ' + position.coords[prop] + '<br>'
 
 		}, error);
-		//navigator.geolocation.watchPosition
+		//navigator.geolocation.watchPosition(f1, f2)
 	} else {
 		error('not supported');
 	}

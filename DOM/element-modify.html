@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Модификация элемента</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+		function modifyMyElement()
+		{
+			var myElement = document.getElementById("myElement");
+			myElement.textContent = "Новый текст"
+			//myElement.innerHTML
+			//myElement.firstChild.nodeValue = "Новый текст";
+			/*myElement.style.color = "red";
+			myElement.style.backgroundColor = "#FFFFCC";
+			myElement.style.fontWight = "bold";
+			myElement.style.fontSize = "200%";*/
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Модификация элемента</h1>
+	<p id="myElement"></p>
+	<div>
+		<a href="javascript:modifyMyElement()">Модифицировать элемент</a>
+	</div>
+
+</body>
+</html>

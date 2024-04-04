@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Доступ к определенному элементу</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style>
+		.selected
+		{
+			color : red;
+			background-color : yellow;
+		}
+		.centered
+		{
+			text-align:center;
+		}
+	</style>
+	<script type="text/javascript">
+		function changeElement()
+		{
+			//var myDiv = document.getElementById("myDiv");
+			//var myDiv = document.querySelector('#myDiv');
+			var myDiv = document.querySelector('body > div');
+
+			if (myDiv)
+			{
+				//myDiv.textContent = "Новое содержимое";
+				//myDiv.innerHTML = `<h2>Новое содержимое. id: ${myDiv.id}</h2>`;
+				//myDiv.style.color = "red";
+				//myDiv.style.backgroundColor = "yellow";  // background-color : yellow;
+
+				//myDiv.className = 'selected'; // class="selected"
+				//myDiv.className = ''
+				
+				myDiv.classList.add('selected');
+				//myDiv.classList.remove('centered')
+				for(var i=0; i < myDiv.classList.length; i++)
+					myDiv.innerHTML += '<br>' + myDiv.classList[i];
+			}
+			
+		}
+	
+	</script>	
+</head>
+
+<body>
+	<h1>Доступ к определенному элементу</h1>
+	<div id="myDiv" class="centered" >Мой DIV</div>
+	<p>
+		<a href="javascript:changeElement()">Изменить элемент</a>
+	</p>
+</body>
+</html>

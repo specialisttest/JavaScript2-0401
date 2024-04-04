@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Доступ к определенным элементам по имени тега</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style>
+	hr + div > p 
+	{
+		color : yellow;
+	}
+	</style>
+	<script type="text/javascript">
+		function test()
+		{
+			//var ps = document.querySelectorAll('hr + div > p');
+			//alert(ps[0].innerHTML)
+			var p = document.querySelector('hr + div > p');
+			alert(p.innerHTML)
+		}
+	
+		function enumP()
+		{
+			var div = document.getElementById('myDiv')
+			//var allP = document.getElementsByTagName("P");
+			//var allP = div.getElementsByTagName("P");
+
+			let allP = div.getElementsByTagName("P")
+			
+
+			//var allP = document.getElementsByClassName("red");
+			for (var i = 0; i < allP.length; i++)
+			{
+				var p = allP[i];
+				p.style.color = 'red';
+				//var pNumber = i + 1;
+				//allP[i].firstChild.nodeValue = pNumber + ". " +
+				//	allP[i].firstChild.nodeValue;
+			}
+		}
+
+		function paintP() {
+			let paragraphs = document.querySelectorAll('#myDiv p')
+			paragraphs.forEach(p => p.style.color = 'green' );
+			
+			//document.querySelectorAll('p')
+			//document.getElementsByTagName('P')
+			//document.getElementsByClassName()
+
+			//let myDiv = document.getElementById('myDiv');
+			//let paragraphs = myDiv.getElementsByTagName('P')
+			//for(let i=0;i < paragraphs.length; i++)
+			//	paragraphs[i].style.color = 'green';
+
+		}
+	</script>
+</head>
+
+<body>
+	<h1 class='green'>Доступ к определенным элементам по имени тега</h1>
+	<p>В этом примере есть несколько параграфов текста</p>
+    <hr>
+	<div id=myDiv>
+		<p>Причем эти параграфы находятся на разном уровне</p>
+		<p class='green'>Например, некоторые из них вложены в DIV</p>
+		<div>
+			<p>Вложенный P в DIV</p>
+		</div>
+    </div>
+    <div>
+		<a href="javascript:paintP()">Покрасить параграфы</a>
+		<a href="javascript:enumP()">Пронумеровать параграфы</a>
+		<a href="javascript:test()">test</a>
+    </div>
+
+</body>
+</html>
