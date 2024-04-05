@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<title>"Всплытие" события</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+		window.addEventListener('load', ()=>{
+			document.body.querySelectorAll("*")
+			.forEach(e=>{
+				e.addEventListener('click', function(){
+						console.log('Capture phase: ' + this.tagName);
+					}, true);
+				e.addEventListener('click', function(event){
+						console.log('Bubble phase: ' + this.tagName);
+						event.stopPropagation(); // cancel bubble
+					});
+			})
+		})
+	</script>	
+</head>
+
+<body>
+	<h1>
+		"Всплытие" события
+	</h1>
+	<div>
+		<h2>
+			Заголовок
+		</h2>
+		<p>
+			Текст параграфа
+			<strong>
+				жирный текст
+			</strong>
+		</p>
+	</div>
+</body>
+</html>

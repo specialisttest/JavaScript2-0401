@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<title>События формы</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        form {
+            width : 20em;
+            margin : auto;
+
+        }
+        form fieldset {
+            background-color: #DFDFDF;
+        }
+
+        form h2 {
+            text-align:  center;
+        }
+
+        form label {
+            display: block;
+            width : 5em;
+            float: left;
+        }
+    </style>
+	<script type="text/javascript">
+        addEventListener('load', ()=>{
+            document.querySelector('form').addEventListener('submit', function(e){
+                if (!e) e = event;
+
+                let l = document.getElementById('login');
+                // login не менее 3 символов
+                if (l.value.length < 3) {
+                    alert('Login length < 3');
+                    e.preventDefault();
+                }
+
+                let p = document.getElementById('password');
+                let c = document.getElementById('confirm');
+
+                if (p.value != c.value) {
+                    alert('Password != confirm');
+                    e.preventDefault();
+                    // return false;
+                }
+
+
+            })
+
+        });
+	</script>
+</head>
+<body>
+    <form>
+        <h2>Registration</h2>
+        <fieldset>
+            <div><label>Name: </label><input type="text" id="login"></div>
+            <div><label>Password: </label><input type="password" id="password"></div>
+            <div><label>Confirm: </label><input type="password" id="confirm"></div>
+            <div><label>Age: </label><input type="number" id="age"></div>
+            <input type="submit" value="Register">
+        </fielset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Custom event</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#square {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+	</style>
+</head>
+
+<body>
+	<h1>Custom event</h1>
+	<div id="square">
+	</div>
+	<script type="text/javascript">
+        let e1 = new Event('toggledOn');
+        //let e2 = new Event('toggledOff');
+        let e2 = new CustomEvent('toggledOff', {
+            detail : {toggleStatus : false, x: 0, y: 0},
+            bubbles : true,
+            cancelable : false
+        });
+
+        let sq = document.getElementById('square');
+
+        sq.addEventListener('click', function(e) {
+            if (this.notToggled) {
+                this.notToggled = false;
+                sq.dispatchEvent(e1); // toggleOn
+            }
+            else {
+                this.notToggled = true;
+                e2.detail.x = e.offsetX;
+                e2.detail.y = e.offsetY;
+                sq.dispatchEvent(e2); // toggledOff
+            }
+                
+        });
+
+        sq.addEventListener('toggledOn', function(){
+            this.style.backgroundColor = 'aquamarine';
+            console.log('Square toggled: ' + !this.notToggled);
+        });
+
+        sq.addEventListener('toggledOff', function(e){
+            this.style.backgroundColor = 'pink';
+            //console.log('Square toggled: ' + !this.notToggled);
+            console.log(`Square toggled: ${e.detail.toggleStatus} x: ${e.detail.x} y: ${e.detail.y}`);
+        });
+
+	</script>
+</body>
+</html>

@@ -57,21 +57,37 @@
 			p.textContent ="Это текст";
 
 			//document.body.insertAfter
-			document.body.insertBefore(p, document.body.firstChild)
+			//document.body.insertBefore(p, document.body.firstChild)
 
 			//document.body.appendChild(p);
 			
-			//var d = document.getElementById('paragraphs')
-			//d.appendChild(p)
+			var d = document.getElementById('paragraphs')
+			d.appendChild(p)
 
 			//document.body.appendChild(p)
 			//document.body.insertBefore(p, document.body.firstChild)
 			// insertAfter
 		}
+
+		function addLi() {
+			// 1. Создать элемент дочернего узла
+			let li = document.createElement('LI');
+			/*// 2. Создать текстовый узел
+			let text = document.createTextNode('Новый пункт');
+			// 3. Добавить текстовый узел как дочерний элементу LI
+			li.appendChild(text);*/
+			li.innerText = 'Новый пункт';
+
+			// 4. Добавить элемент LI как дочерний родителю (UL)
+			let ul = document.getElementById('list');
+			ul.appendChild(li);
+		}
 	</script>
 </head>
 
 <body>
+	
+
 	<h1>Создание элементов</h1>
 	<ul id=list>
 		<li>Живопись</li>
@@ -79,14 +95,13 @@
 		<li>Музыка</li>
 	
 	</ul>
-	
-	
-	
+
 	
 	<div id=paragraphs>
 		
 	</div>
 	<div>
+		<a href="javascript:addLi()">Добавить li</a>
 		<a href="javascript:createSomeElements()">Создать элементы</a>
 		<a href="javascript:createParagraph()">Добавить параграф</a>
 	</div>

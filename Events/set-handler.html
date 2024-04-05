@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+	<title>Назначение обработчиков событий</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+		/*
+		**	Функция обработки события
+		*/
+		function myEventHandler()
+		{
+			alert("Произошло событие!");
+		}
+		function showText()
+		{
+			// this === event source
+			alert(this.textContent);
+			this.style.color = 'red';
+		}
+		
+		/*
+		**	Эта функция выполняется при окончании загрузки страницы
+		*/
+		
+		function pageInit()
+		{
+			var p2 = document.getElementById("p2");
+			p2.onclick = ()=>{
+				alert('Click on P2')
+			};
+			
+		}
+		/*
+		** Назначение функции pageInit() на событие загрузки страницы 
+		*/
+		window.onload = pageInit;
+		
+		document.onreadystatechange = ()=>{
+			if (document.readyState === 'interactive') {
+				var p2 = document.getElementById("p2");
+				var p3 = document.getElementById("p3");
+
+				//p2.onclick = myEventHandler
+
+				// recommended
+				p2.addEventListener('click', myEventHandler )
+				p2.addEventListener('click', ()=>{
+					console.log('Клик на P2')
+				} );
+				//p2.removeEventListener('click', myEventHandler)
+
+				/*p2.addEventListener('click', e=>{
+					console.log('Click on P2');
+					e.stopPropagation(); // cancel bubble
+					// e.preventDefault(); // cancel default handler
+					// return false;
+				} );*/
+
+
+				// delegation
+				p2.addEventListener('click', showText);
+				p3.addEventListener('click', showText);
+
+				//p2.removeEventListener('click', myEventHandler)
+
+				let ps = document.querySelectorAll("P");
+				let selectedP = null;
+
+				ps.forEach(p=>{
+					p.addEventListener('click', function() {
+						if (selectedP) selectedP.style.color = '';
+						this.style.color = 'red';
+						selectedP = this;
+					});
+				})
+				
+			}
+		}
+
+
+
+		window.addEventListener('load', function(){
+			document.querySelector('a').addEventListener('click', 
+			function(evt){
+				//alert('Click!');
+				if (!evt) evt = event;
+				
+				alert('Click!');
+				
+				//evt.cancelBubble = true
+				//if (evt.stopPropagation)
+				//	evt.stopPropagation();
+				//
+				
+				evt.preventDefault();
+				return false;
+			});
+		})
+
+
+	</script>
+
+</head>
+
+<body>
+	<a href="http://yandex.ru">Yandex</a>
+
+
+	<h1>Назначение обработчиков событий</h1>
+	
+	<p onclick="myEventHandler.apply(this)">Параграф 1</p>
+	
+	<p id="p2">Параграф 2</p>
+
+	<p id="p3">Параграф 3</p>
+	<p onclick="showText.call(this)">Параграф 4</p>
+	<p>Параграф 5</p>
+	<p>Параграф 6</p>
+
+</body>
+</html>

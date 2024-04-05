@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+	<title>События формы</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        form {
+            width : 20em;
+            margin : auto;
+
+        }
+        form fieldset {
+            background-color: #DFDFDF;
+        }
+
+        form h2 {
+            text-align:  center;
+        }
+
+        form label {
+            display: block;
+            width : 5em;
+            float: left;
+        }
+
+        form div {
+            margin : 5px;
+        }
+
+        input[type=text]:invalid, input[type=password]:invalid {
+            outline : 2px solid red;
+        }
+    </style>
+	<script type="text/javascript">
+        addEventListener('load', ()=>{
+            document.querySelectorAll ('#confirm, #password')
+            .forEach( e=>{ e.addEventListener('input', function(e){
+                if (!e) e = event;
+
+
+                let p = document.getElementById('password');
+                let c = document.getElementById('confirm');
+                c.setCustomValidity(p.value != c.value ? 'Password != confirm':'');
+
+                //if (p.value != c.value)
+                //    c.setCustomValidity('Password != confirm'); // c => invalid
+                //else
+                //    c.setCustomValidity(''); // c => valid
+
+
+            })});
+
+            document.querySelector("#login").addEventListener('keydown', e=>{
+                //let ch = String.fromCharCode(e.keyCode);
+                if (e.key >= '0' && e.key <= '9') e.preventDefault();
+
+            });
+            
+            
+            
+
+        });
+	</script>
+</head>
+<body>
+    <form>
+        <h2>Registration</h2>
+        <fieldset>
+            <div><label>Name: </label><input type="text" required pattern="\D{3,}" id="login" title="Login >= 3 chars"></div>
+            <div><label>Password: </label><input type="password" required pattern=".{3,}"  title="password >= 3 chars" id="password"></div>
+            <div><label>Confirm: </label><input type="password" required pattern=".{3,}" title="password >= 3 chars" id="confirm"></div>
+            <div><label>Age: </label><input type="number" id="age"></div>
+            <input type="submit" value="Register">
+        </fielset>
+    </form>
+</body>
+</html>

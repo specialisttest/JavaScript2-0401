@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<title>Создание элементов</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        div#photoContainer img {
+            margin : 20px;
+        }
+        #buttons {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="photos.js"></script>
+	<script type="text/javascript">
+        let photoIndex = 0;
+
+        function goPhoto(i) {
+            photoIndex += i;
+            if (photoIndex >= photos.length) photoIndex = 0;
+            if (photoIndex < 0) photoIndex = photos.length-1;
+            let photo = document.getElementById('photo');
+            photo.src = './images/'+photos[photoIndex];
+        }
+        function prevPhoto() {
+            goPhoto(-1);
+        }
+        function nextPhoto() {
+            goPhoto(1);
+        }
+
+        addEventListener('load', ()=>{
+            let photo = document.getElementById('photo')
+            photo.src = `./images/${photos[0]}`;
+            let c = document.getElementById('photoContainer');
+            let i = 0;
+            photos.forEach(p => {
+               let img = new Image();
+               img.src = `./images/${p}`;
+               img.width = 64;
+               img.height = 48;
+               img.id=`miniPhoto-`+(++i);
+               c.appendChild(img);
+               img.addEventListener('click', function (){
+                    photo.src = this.src;
+               });
+            });
+
+            document.querySelectorAll('#buttons button')
+                .forEach( b=>b.addEventListener('click', ()=>eval(b.id+'()') ) );
+
+        });
+	</script>
+</head>
+
+<body>
+    <div id="photoContainer"></div>
+    <div style="text-align: center;"><img id="photo"></div>
+    <div id="buttons">
+        <button id="prevPhoto">Назад</button>
+        <button id="nextPhoto">Вперед</button>
+    </div>
+	
+</body>
+</html>

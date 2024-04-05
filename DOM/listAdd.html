@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Создание элементов</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+        function addToList() {
+            let text = prompt('Новый пункт', '')
+            if (text) {
+                let li = document.createElement('LI');
+                li.textContent = text;
+                let ul = document.querySelector('ul#list');
+                
+                //ul.appendChild(li);
+                //ul.insertBefore(li, ul.firstChild);
+
+                let lis = document.querySelectorAll("ul#list > li");
+                if (lis.length == 0 || text >= lis[lis.length-1].textContent)
+                    ul.appendChild(li);
+                else {
+                    for(let i=0; i < lis.length; i++)
+                        if (lis[i].textContent >= text) {
+                            ul.insertBefore(li, lis[i]);
+                            break;
+                        }
+                } 
+            }
+        }
+
+        function removeFromList() {
+            let li = document.querySelector("ul#list > li:last-of-type");
+            if (li && confirm(`Удалить пункт: "${li.textContent}"?`))
+                li.parentNode.removeChild(li);
+
+        }
+	</script>
+</head>
+
+<body>
+	<h1>Добавление элементов</h1>
+	<ul id="list">
+		<li>Живопись</li>
+		<li>Музыка</li>
+		<li>Скульптура</li>
+	</ul>
+
+	<div>
+		<a href="javascript:addToList()">Добавить..</a>,
+        <a href="javascript:removeFromList()">Удалить..</a>
+
+	</div>
+	
+	
+</body>
+</html>

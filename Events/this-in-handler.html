@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<title>Передача объекта в обработчик события</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript">
+		function modifyElement(obj)
+		{
+			if (obj.style.fontStyle == "")
+			{
+				 obj.style.fontStyle = "italic";
+			}
+			else
+			{
+				 obj.style.fontStyle = "";
+			}
+		}
+	</script>
+
+</head>
+
+<body>
+	<h1>Передача объекта в обработчик события</h1>
+	
+	<p 
+		onclick="modifyElement(this)"
+		onmouseover="this.style.color='red'"
+		onmouseout="this.style.color=''">
+			Параграф 1
+	</p>
+
+	<p 
+		onclick="modifyElement(this)"
+		onmouseover="this.style.color='red'"
+		onmouseout="this.style.color=''">
+			Параграф 2
+	</p>
+
+	<p 
+		onclick="modifyElement(this)"
+		onmouseover="this.style.color='red'"
+		onmouseout="this.style.color=''">
+			Параграф 3
+	</p>
+
+	<p 
+		onclick="modifyElement(this)"
+		onmouseover="this.style.color='red'"
+		onmouseout="this.style.color=''">
+			Параграф 4
+	</p>
+
+</body>
+</html>
