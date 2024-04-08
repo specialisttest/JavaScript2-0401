@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<title>Структура DOM</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        ul > li > h3 {
+            cursor : pointer;
+        }
+    </style>
+	<script type="text/javascript">
+        function changeULVis( visibility) {
+            document.querySelectorAll('ul > li > ul')
+                .forEach( u=>u.style.display = visibility?'':'none');
+        }
+
+        addEventListener('load', ()=>{
+            document.querySelectorAll('ul > li > h3')
+            .forEach( h => h.addEventListener( 'dblclick', function(e){
+                // this == h3
+                let u = this.parentNode.querySelector('ul');
+                if (u) u.style.display = u.style.display == 'none'?'':'none';
+            }));
+        });
+	</script>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <h3>Живопись</h3>
+            <ul>
+                <li>Рембрандт</li>
+                <li>Айвазовский</li>
+                <li>Шишкин</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Литература</h3>
+            <ul>
+                <li>Пушкин</li>
+                <li>Лермонтов</li>
+                <li>Гоголь</li>
+            </ul>
+        </li>
+        <li>
+            <h3>Скульптура</h3>
+            <ul>
+                <li>Роден</li>
+                <li>Микеланджело</li>
+                <li>Церетели</li>
+            </ul>
+        </li>
+    </ul>
+    <div>
+        <a href="javascript:changeULVis(false)">Свернуть</a>&nbsp;<a href="javascript:changeULVis(true)">Развернуть</a>
+    </div>
+</body>
+</html>

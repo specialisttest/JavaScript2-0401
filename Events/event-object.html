@@ -17,6 +17,10 @@
 			result.innerHTML = '';
 			for(let p in e)
 				result.innerHTML += p + ': '+e[p]+'<br>';
+
+
+
+
 			/*result.innerHTML = 
 				"x: " + event.x + "<br>" + 
 				"y: " + event.y + "<br>" + 
@@ -38,6 +42,7 @@
 			document.body.addEventListener('click', showEventProperties);
 			document.body.addEventListener('mousemove', showEventProperties);
 			document.body.addEventListener('keypress', showEventProperties);
+			window.addEventListener('scroll', showEventProperties);
 		 });
 
 	</script>

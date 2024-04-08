@@ -5,14 +5,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<script type="text/javascript">
 		window.addEventListener('load', ()=>{
+			// block clicks on full page
+			//document.body.addEventListener('click', e=>e.stopPropagation(),true);
+			document.querySelector('a').addEventListener('click', e=>{
+				e.preventDefault();
+				// return false;
+			});
+
 			document.body.querySelectorAll("*")
 			.forEach(e=>{
 				e.addEventListener('click', function(){
 						console.log('Capture phase: ' + this.tagName);
 					}, true);
-				e.addEventListener('click', function(event){
+				e.addEventListener('click', function(e){
 						console.log('Bubble phase: ' + this.tagName);
-						event.stopPropagation(); // cancel bubble
+						e = e || event
+						if (e.stopPropagation)
+							e.stopPropagation(); // cancel bubble
+						else
+							e.cancelBubble = true;
 					});
 			})
 		})
@@ -23,6 +34,7 @@
 	<h1>
 		"Всплытие" события
 	</h1>
+	<a href="http://yandex.ru">Yandex</a>
 	<div>
 		<h2>
 			Заголовок

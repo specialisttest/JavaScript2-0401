@@ -35,14 +35,16 @@
             let c = document.getElementById('photoContainer');
             let i = 0;
             photos.forEach(p => {
-               let img = new Image();
+               let img = new Image(); // document.createElement('img')
                img.src = `./images/${p}`;
                img.width = 64;
                img.height = 48;
-               img.id=`miniPhoto-`+(++i);
+               img.id=`miniPhoto-`+(i++);
                c.appendChild(img);
                img.addEventListener('click', function (){
                     photo.src = this.src;
+                    photoIndex = parseInt(this.id.substr(10));
+                    //console.log(photoIndex);
                });
             });
 

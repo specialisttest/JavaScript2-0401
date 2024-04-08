@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Создание элементов</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        .selectedItem {
+            color : red;
+        }
+    </style>
+
+	<script type="text/javascript">
+        function addToList() {
+            let itemTextElement = document.getElementById('newItemText');
+
+            if (!itemTextElement) {
+                let li = document.createElement('LI');
+                li.innerHTML = `
+                    <input type="text" id="newItemText">&nbsp;<button>ОК</button>&nbsp;<button>Отмена</button>
+                `;
+
+                let ul = document.querySelector('ul#list');
+                let s = ul.querySelector('li.selectedItem + li');
+                if (s)
+                    ul.insertBefore(li, s);
+                else
+                    ul.appendChild(li);                
+                /*let s = ul.querySelector('li.selectedItem');
+                if (s && s.nextSibling)
+                    ul.insertBefore(li, s.nextSibling);
+                else
+                    ul.appendChild(li);*/
+                
+                itemTextElement = document.querySelector('ul#list li #newItemText');
+
+                let ok = document.querySelector('ul#list li button:first-of-type');
+                let cancel = document.querySelector('ul#list li button:last-of-type');
+
+                cancel.addEventListener('click', ()=>ul.removeChild(li) );
+                ok.addEventListener('click', ()=>{
+                    if (itemTextElement.value.length > 0)
+                        li.innerText = itemTextElement.value;
+                        li.addEventListener('click', clickOnItem);
+                });
+
+                /*itemTextElement.addEventListener('keydown',  e=>{
+                    if (e.key >= '0' && e.key <= '9') e.preventDefault();
+                });
+                itemTextElement.addEventListener('input',  e=>
+                    ok.disabled = itemTextElement.value.length == 0
+                );*/
+
+                itemTextElement.focus();
+            }
+            else
+                itemTextElement.focus();
+    }
+
+        function removeFromList() {
+            //let li = document.querySelector("ul#list > li:last-of-type");
+            let li = document.querySelector("ul#list > li.selectedItem");
+            if (li && confirm(`Удалить пункт: "${li.textContent}"?`))
+                li.parentNode.removeChild(li);
+
+        }
+
+        function clickOnItem() {
+            let s = this.parentNode.querySelector('li.selectedItem');
+            if (s) s.classList.remove('selectedItem');
+            if (s != this) this.classList.add('selectedItem');
+        }
+
+		document.onreadystatechange = ()=>{
+			if (document.readyState === 'interactive') {
+                document.querySelectorAll("ul#list > li")
+                .forEach( li=>{
+                    li.addEventListener('click', clickOnItem)
+                });
+
+            }
+        }
+
+	</script>
+</head>
+
+<body>
+	<h1>Добавление элементов</h1>
+	<ul id="list">
+		<li>Живопись</li>
+		<li>Музыка</li>
+		<li>Скульптура</li>
+	</ul>
+
+	<div>
+		<a href="javascript:addToList()">Добавить..</a>,
+        <a href="javascript:removeFromList()">Удалить..</a>,
+
+	</div>
+	
+	
+</body>
+</html>

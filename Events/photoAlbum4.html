@@ -10,17 +10,34 @@
         #buttons {
             text-align: center;
         }
+        #photo {
+            margin : auto;
+            width : 640px;
+            height: 480px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            transition: background-image 500ms;
+        }
+
     </style>
     <script type="text/javascript" src="photos.js"></script>
 	<script type="text/javascript">
         let photoIndex = 0;
+        let slideShowTimer;
+
+        function imagePath(name) {
+            return `url('./images/${name}')`
+        }
+        function updatePhoto() {
+            let photo = document.getElementById('photo');
+            photo.style.backgroundImage = imagePath(photos[photoIndex]);
+        }
 
         function goPhoto(i) {
             photoIndex += i;
             if (photoIndex >= photos.length) photoIndex = 0;
             if (photoIndex < 0) photoIndex = photos.length-1;
-            let photo = document.getElementById('photo');
-            photo.src = './images/'+photos[photoIndex];
+            updatePhoto();
         }
         function prevPhoto() {
             goPhoto(-1);
@@ -29,9 +46,18 @@
             goPhoto(1);
         }
 
+        function slideShow() {
+            if (slideShowTimer) {
+                clearInterval(slideShowTimer);
+                slideShowTimer = null
+            }
+            else
+                slideShowTimer = setInterval(nextPhoto, 3000)
+        }
+
         addEventListener('load', ()=>{
             let photo = document.getElementById('photo')
-            photo.src = `./images/${photos[0]}`;
+            updatePhoto();
             let c = document.getElementById('photoContainer');
             let i = 0;
             photos.forEach(p => {
@@ -42,13 +68,27 @@
                img.id=`miniPhoto-`+(i++);
                c.appendChild(img);
                img.addEventListener('click', function (){
-                    photo.src = this.src;
-                    photoIndex = parseInt(this.id.substr(10));
+                    photoIndex = parseInt(this.id.split('-')[1]);
+                    updatePhoto();
                });
             });
 
             document.querySelectorAll('#buttons button')
                 .forEach( b=>b.addEventListener('click', ()=>eval(b.id+'()') ) );
+
+            document.getElementById('photo').addEventListener('click', function (e) {
+                // console.log(e.offsetX);
+                if (e.offsetX < this.offsetWidth / 2 )
+                    prevPhoto();
+                else
+                    nextPhoto();
+            });
+
+            document.body.addEventListener('keyup', e=>{
+                //console.log(e.keyCode);
+                if (e.ctrlKey && e.keyCode == 37) prevPhoto();
+                if (e.ctrlKey && e.keyCode == 39) nextPhoto();
+            })
 
         });
 	</script>
@@ -56,9 +96,10 @@
 
 <body>
     <div id="photoContainer"></div>
-    <div style="text-align: center;"><img id="photo"></div>
+    <div id="photo"></div>
     <div id="buttons">
         <button id="prevPhoto">Назад</button>
+        <button id="slideShow">Слайдшоу</button>
         <button id="nextPhoto">Вперед</button>
     </div>
 	

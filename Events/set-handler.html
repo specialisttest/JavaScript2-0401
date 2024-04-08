@@ -25,6 +25,8 @@
 		function pageInit()
 		{
 			var p2 = document.getElementById("p2");
+			
+			// phase bubble
 			p2.onclick = ()=>{
 				alert('Click on P2')
 			};
@@ -67,11 +69,12 @@
 				let selectedP = null;
 
 				ps.forEach(p=>{
+					// phase bubble
 					p.addEventListener('click', function() {
 						if (selectedP) selectedP.style.color = '';
 						this.style.color = 'red';
 						selectedP = this;
-					});
+					}/*, false (by default) bubble | true - capture*/);
 				})
 				
 			}
