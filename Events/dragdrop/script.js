@@ -46,7 +46,8 @@ function handleDrop(e) {
 	document.getElementById("output").innerHTML+="<li><strong>" + droppedElem + "</strong> dropped on <strong>" + this.id + "</strong></li>";
 	var now = new Date();
 	this.getElementsByTagName("time")[0].innerHTML = now.format("H:MM:ss");
-	cancel(e);
+	//return cancel(e);
+	e.preventDefault();
 }
 
 function handleDragEnd(e) {

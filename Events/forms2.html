@@ -7,15 +7,18 @@
 	<style>
 		input:invalid
 		{
-			outline : 1px solid red;
+			outline : 3px solid red;
 		}
 	</style>
 	<script type="text/javascript">
-
+		
 		window.onload = function ()
 		{
-			var form = document.getElementById('myForm');
-			form.onsubmit = function(evt) {
+			//var form = document.getElementById('myForm');
+			//form.onsubmit = function(evt) {
+			var confirm = document.getElementById('confirmPass');
+			//confirm.onchange = function(evt) { // изменение + потеря фокуса
+			confirm.oninput = function(evt) { // изменение
 				if (!evt) evt = event;
 
 				var p = document.getElementById('password');
@@ -24,12 +27,13 @@
 				{
 					//console.log('invalid')
 					c.setCustomValidity('confirm password does not equal password')
-					evt.preventDefault();
+					//evt.preventDefault();
 				}
 				else
 					c.setCustomValidity('')
 					
 			}
+			/*
 			var nums = document.querySelectorAll('input[type=number]')
 			for(var i=0; i < nums.length; i++)
 				nums[i].onkeydown = function(evt) {
@@ -42,7 +46,7 @@
 						evt.preventDefault();
 						return false;
 					}
-				}
+				}*/
 		}
 	</script>
 </head>
@@ -53,11 +57,14 @@
 	<h1>Форма</h1>
 	<form id=myForm>
 		<label>Login:</label>
-		<input type=text name=login id=login required
+		<input type=text name=login id=login required 
+			
 			title='login required'
 			><br>
 		<label>Password:</label>
-		<input type=password name=password id=password required
+		<input type=password name=password id=password
+			required
+			pattern=".{3,}"
 			title='password required' 
 		><br>
 		<label>confirm password:</label>

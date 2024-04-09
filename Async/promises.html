@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        /*
+        var promise = new Promise( 
+            (resolve, reject) => {
+            // Эта функция будет вызвана автоматически
+
+            // В ней можно делать любые асинхронные операции,
+            // А когда они завершатся — нужно вызвать одно из:
+            // resolve(результат) при успешном выполнении
+            // reject(ошибка) при ошибке
+            }
+        
+        )   */
+        
+        // Универсальный метод для навешивания обработчиков:
+        // promise.then(onFulfilled, onRejected)
+        // onFulfilled – функция, которая будет вызвана с результатом при resolve.
+        // onRejected – функция, которая будет вызвана с ошибкой при reject.
+
+        // onFulfilled сработает при успешном выполнении
+        // promise.then(onFulfilled)
+        // onRejected сработает при ошибке
+        // promise.then(null, onRejected)
+
+        "use strict";
+
+        // Создаётся объект promise
+        let promise = new Promise(
+            (resolve, reject) => {
+            setTimeout(() => {
+                // переведёт промис в состояние fulfilled с результатом "result"
+                //resolve("async operation result");
+                //reject(new Error("time out"));
+                //throw new Error('oooooo');
+            }, 1000);
+        });
+
+        // promise.then навешивает обработчики на успешный результат или ошибку
+        promise
+        .then(
+            result => {
+            // первая функция-обработчик - запустится при вызове resolve
+                console.log("Fulfilled: " + result); // result - аргумент resolve
+                return `first async op result ${result}`;
+            }/*,
+            error => {
+            // вторая функция - запустится при вызове reject
+            console.log("Rejected: " + error); // error - аргумент reject
+            }*/
+        ).then( p=> {
+            console.log(`second async op with parameter ${p}`);
+        }).catch( e=>{
+            console.log("Rejected: " + e);
+        })
+
+        // Promise после reject/resolve – неизменны
+        // после вызова resolve/reject промис уже не может изменить своё состояние
+
+        // Цепочки промисов
+        // promise
+        //  .then(...)
+        //  .then(...)
+        //  .then(...)
+        
+        //  Если очередной then вернул промис, то далее по цепочке будет передан не сам этот промис, а его результат.
+
+        // Перехват ошибок
+        // обработчик нужно поставить через второй аргумент .then(..., onRejected) или через .catch(onRejected).
+
+        // Параллельное выполнение
+        // Promise.all(iterable)
+        // Promise.race(iterable)
+
+        // Promise.resolve(value) создаёт успешно выполнившийся промис с результатом value.
+        // new Promise((resolve) => resolve(value))
+
+        // Async/Await
+        // Ключевое слово async перед объявлением функции:
+
+        // Обязывает её всегда возвращать промис (или оборачивает результат return в промис).
+        // Позволяет использовать await в теле этой функции.
+        
+        // Ключевое слово await перед промисом заставит JavaScript дождаться его выполнения, после чего:
+        // Если промис завершается с ошибкой, будет сгенерировано исключение, как если бы на этом месте находилось throw.
+        // Иначе вернётся результат промиса.   
+        
+        function delay(t) {
+            return new Promise(
+                (resolve, reject) => {
+                setTimeout(() => {
+                    resolve("async operation result");
+                }, t);
+            })
+
+        }
+
+        // delay(10000).then(r=>console.log(r));
+        
+        
+        async function result() {
+            let x = 5;
+
+            let r = await delay(3000);
+            return r;
+        }
+
+        // await нельзя использовать вне async функции
+        
+        (async ()=> {
+            console.log(await result());
+        })()
+
+
+    </script>
+    <style>
+        span {
+            background:yellow;
+        
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="result">
+
+    </div>
+</body>
+</html>

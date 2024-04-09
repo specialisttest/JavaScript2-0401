@@ -1,0 +1,7 @@
+FetchAPI
+
+1. Получить инф о человеке и отобразить имя(name), логин (username) и e-mail(email)
+https://jsonplaceholder.typicode.com/users/1
+
+2. (*) Отредактировать имя на странице и отправить обратно методом POST
+https://jsonplaceholder.typicode.com/posts

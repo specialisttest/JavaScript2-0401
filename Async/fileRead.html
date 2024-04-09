@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+
+        // Промисификация
+        function getTextReader(file) {
+            return new Promise(
+                (resolve, reject) => {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        resolve(reader.result);
+                    }
+                    reader.onerror = function (e) {
+                        reject(reader.error);
+                    }
+                    reader.readAsText(file);
+                }
+            );
+        }
+        /*function readTextFile()
+        {
+            var f = document.getElementById("textFile");
+            if (f.files.length != 0) {
+                getTextReader(f.files[0])
+                .then( r=>{
+                    document.getElementById("result").textContent=r
+                }).catch( e=>document.getElementById("result").textContent=e);
+            }
+        }*/
+
+
+        /*
+        async function readTextFile() {
+            var f = document.getElementById("textFile");
+            if (f.files.length != 0) {
+                try {
+                    document.getElementById("result").innerText =  await getTextReader(f.files[0]);
+                }
+                catch(e) {
+                    document.getElementById("result").innerText =  e;
+                }
+            }
+        }*/
+
+
+        
+        function readTextFile()
+        {
+            var f = document.getElementById("textFile"); // input type=file
+            if (f.files.length != 0)
+            {
+                var reader = new FileReader();
+
+                // callback function
+                reader.onload = function (e) { // end async read
+                    var pre = document.getElementById("result");
+                    pre.textContent = this.result; // reader.result
+                }
+                
+                reader.readAsText(f.files[0]); // start async read
+                
+                //reader.readAsArrayBuffer(f.files[0])
+                //reader.readAsDataURL(f.files[0]);
+
+            }
+
+        }
+
+        
+ 
+    </script>
+    <style>
+        span {
+            background:yellow;
+        
+        }
+
+    </style>
+</head>
+<body>
+    <h1>File API</h1>
+    <input type="file" id="textFile" onchange="readTextFile()">
+    
+    <pre id="result">
+
+    </pre>
+</body>
+</html>

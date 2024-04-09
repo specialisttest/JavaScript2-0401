@@ -17,7 +17,7 @@
             if (!itemTextElement) {
                 let li = document.createElement('LI');
                 li.innerHTML = `
-                    <input type="text" id="newItemText">&nbsp;<button>ОК</button>&nbsp;<button>Отмена</button>
+                    <input type="text" id="newItemText">&nbsp;<button disabled>ОК</button>&nbsp;<button>Отмена</button>
                 `;
 
                 let ul = document.querySelector('ul#list');
@@ -44,12 +44,14 @@
                         li.addEventListener('click', clickOnItem);
                 });
 
-                /*itemTextElement.addEventListener('keydown',  e=>{
+                itemTextElement.addEventListener('keydown',  e=>{
                     if (e.key >= '0' && e.key <= '9') e.preventDefault();
                 });
+
+                
                 itemTextElement.addEventListener('input',  e=>
                     ok.disabled = itemTextElement.value.length == 0
-                );*/
+                );
 
                 itemTextElement.focus();
             }
