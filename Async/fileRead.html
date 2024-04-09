@@ -59,11 +59,12 @@
                 reader.onload = function (e) { // end async read
                     var pre = document.getElementById("result");
                     pre.textContent = this.result; // reader.result
+                    // img.src = this.result
                 }
                 
                 reader.readAsText(f.files[0]); // start async read
-                
                 //reader.readAsArrayBuffer(f.files[0])
+                // read image
                 //reader.readAsDataURL(f.files[0]);
 
             }

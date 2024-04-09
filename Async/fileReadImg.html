@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+
+        // Промисификация
+        /*function getTextReader(file) {
+            return new Promise(
+                (resolve, reject) => {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        resolve(reader.result);
+                    }
+                    reader.onerror = function (e) {
+                        reject(reader.error);
+                    }
+                    reader.readAsText(file);
+                }
+            );
+        }
+        async function readTextFile() {
+            var f = document.getElementById("textFile");
+            if (f.files.length != 0) {
+                document.getElementById("result").innerText =
+                    await getTextReader(f.files[0]);
+            }
+        }*/
+
+
+        
+        function readTextFile()
+        {
+            var f = document.getElementById("textFile");
+            if (f.files.length != 0)
+            {
+                var reader = new FileReader();
+
+                reader.onload = function (e) { // end async read
+                    var img = document.getElementById("result");
+                    //div.textContent = this.result;
+                    img.src = this.result;
+                }
+                //reader.readAsText(f.files[0]); // start async read
+                reader.readAsDataURL(f.files[0]);
+            }
+        }
+    </script>
+    <style>
+        span {
+            background:yellow;
+        
+        }
+
+    </style>
+</head>
+<body>
+
+    <input type="file" id="textFile" onchange="readTextFile()">
+    <img id="result">
+   
+</body>
+</html>
