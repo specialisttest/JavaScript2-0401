@@ -10,9 +10,11 @@ document.addEventListener('readystatechange', function (event) {
 async function getPersons() {
     try {
         //Get request by fetch
-        let response = await fetch(personApiUrl);
+        let response = await fetch(personApiUrl); // GET
         if (response.ok) {
             //Converting the response to Json
+            // await response.text()
+            // await response.blob()
             const data = await response.json();
             //Get table element
             const table = document.getElementById("PersonTable");

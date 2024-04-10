@@ -12,7 +12,10 @@
                 (resolve, reject) => {
                     let reader = new FileReader();
                     reader.onload = function (e) {
-                        resolve(reader.result);
+                        if (reader.result)
+                            resolve(reader.result);
+                        else
+                            reject('Empty data')
                     }
                     reader.onerror = function (e) {
                         reject(reader.error);
@@ -28,13 +31,15 @@
                 getTextReader(f.files[0])
                 .then( r=>{
                     document.getElementById("result").textContent=r
-                }).catch( e=>document.getElementById("result").textContent=e);
+                })
+                .catch( e=>document.getElementById("result").textContent=e);
             }
+
         }*/
 
 
-        /*
-        async function readTextFile() {
+        
+         async function readTextFile() {
             var f = document.getElementById("textFile");
             if (f.files.length != 0) {
                 try {
@@ -44,10 +49,10 @@
                     document.getElementById("result").innerText =  e;
                 }
             }
-        }*/
+        }
 
 
-        
+        /*  
         function readTextFile()
         {
             var f = document.getElementById("textFile"); // input type=file
@@ -69,7 +74,7 @@
 
             }
 
-        }
+        }*/
 
         
  

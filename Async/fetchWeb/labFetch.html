@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>FetchAPI</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	</style>
+	<script type="text/javascript">
+        const BASE_URL = 'https://jsonplaceholder.typicode.com/users';
+        let person = null;
+
+        async function loadData() {
+            try {
+                let response = await fetch(BASE_URL+'/1');
+                if (response.ok) {
+                    person = await response.json();
+                    for(let p in person) {
+                        let inp = document.getElementById(p);
+                        if (inp) inp.value = person[p];
+                    }
+                }
+            }
+            catch(e) {
+                console.log(e);
+            }
+        }
+
+        async function saveData() {
+            if (person) {
+                let inps = document.querySelectorAll('input[type=text], input[type=email]')
+                console.log(inps);
+                inps
+                    .forEach(inp=> { if (person[inp.id]) person[inp.id] = inp.value; });
+
+                let response = await fetch('https://jsonplaceholder.typicode.com/users/1', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json'},
+                    body : JSON.stringify(person)
+                });
+
+                console.log(await response.json());
+
+
+            }
+
+        }
+
+        window.addEventListener('load', ()=>{
+            document.getElementById('loadBtn').addEventListener('click', loadData);
+            document.getElementById('saveBtn').addEventListener('click', saveData);
+        });
+
+	</script>
+</head>
+
+<body>
+	<h1>FetchAPI</h1>
+    <form>
+        Name: <input type="text" id="name"><br>
+        User name: <input type="text" id="username"><br>
+        E-Mail: <input type="email" id="email"><br>
+        <input type="button" id="loadBtn" value="Load">&nbsp;
+        <input type="button" id="saveBtn" value="Save">
+    </form>
+</body>
+</html>

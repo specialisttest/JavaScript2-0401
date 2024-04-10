@@ -4,9 +4,47 @@
     <meta charset="utf-8" />
     <title>Fetch API</title>
     <script src="Scripts/indexScript.js"></script>
+    <script>
+        let person = { name: "Sergey", age: 46};
 
+        let str = JSON.stringify(person);
+        console.log(str);
+
+        async function getData() {
+            
+            let response = await fetch(personApiUrl); // GET
+            if (response.ok) {
+                //Converting the response to Json
+                // await response.text()
+                // await response.blob()
+                const data = await response.json();
+            }
+        }
+
+        async function sendData(person) {
+            let response = await fetch('https://specialist.ru/service', 
+            {
+                method : 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body : JSON.stringify(person)
+            })
+            if (response.ok) {
+                //...
+            }
+        }
+
+        let personBack = JSON.parse(str);
+
+        /*
+        let req = new XMLHttpRequest();
+        req.open('address')
+        req.onload = ...
+        req.send()
+        */
+    </script>
 </head>
 <body>
+    <h1>Fetch API</h1>
     <div>
         <button id="addPersonsBtn">Get Persons</button>
         <hr />

@@ -35,7 +35,7 @@
             (resolve, reject) => {
             setTimeout(() => {
                 // переведёт промис в состояние fulfilled с результатом "result"
-                //resolve("async operation result");
+                resolve("async operation result");
                 //reject(new Error("time out"));
                 //throw new Error('oooooo');
             }, 1000);
@@ -53,7 +53,7 @@
             // вторая функция - запустится при вызове reject
             console.log("Rejected: " + error); // error - аргумент reject
             }*/
-        ).then( p=> {
+        ).then( p => {
             console.log(`second async op with parameter ${p}`);
         }).catch( e=>{
             console.log("Rejected: " + e);
@@ -80,7 +80,7 @@
         // Promise.resolve(value) создаёт успешно выполнившийся промис с результатом value.
         // new Promise((resolve) => resolve(value))
 
-        // Async/Await
+        // async/await
         // Ключевое слово async перед объявлением функции:
 
         // Обязывает её всегда возвращать промис (или оборачивает результат return в промис).
@@ -100,14 +100,17 @@
 
         }
 
-        // delay(10000).then(r=>console.log(r));
+        delay(10000).then(r=>console.log(r));
+
+        //let result = await delay(10000)
         
         
         async function result() {
             let x = 5;
 
-            let r = await delay(3000);
-            return r;
+            let r =  await delay(3000);
+            console.log(r);
+            
         }
 
         // await нельзя использовать вне async функции
