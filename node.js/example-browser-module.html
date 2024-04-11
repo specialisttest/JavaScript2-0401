@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+</head>
+<body>
+    <h1>ES6 Modules</h1>
+    <div id="result"></div>
+    <script type="module">
+        import {AUTHOR, fn2} from  './example-browser-module.js'
+        import module  from './example-browser-module.js'
+
+        console.log(AUTHOR);
+        //console.log(module())
+        document.getElementById('result').innerHTML = 
+            module();
+        console.log(fn2());
+    </script>
+</body>
+</html>

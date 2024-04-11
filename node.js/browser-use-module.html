@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+</head>
+<body>
+    <h1>ES6 Modules</h1>
+    <div id="result"></div>
+    <script type="module">
+        import {mortgage, overpayment} from './mymodule.js'
+
+        const mortgageValue = mortgage(1e7, 10, 15);
+        const overpaymentValue = overpayment(1e7, 10, 15);
+        let result = document.getElementById('result');
+        result.innerHTML = `Платеж в месяц: ${mortgageValue.toFixed(2)}<br>`;
+        result.innerHTML += `Переплата: ${overpaymentValue.toFixed(2)}<br>`;
+    </script>
+</body>
+</html>

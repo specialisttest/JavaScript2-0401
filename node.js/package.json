@@ -1,0 +1,17 @@
+{
+  "name": "mycommander",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mycommander.js",
+  "scripts": {
+    "start": "node mycommander",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "commander": "^12.0.0"
+  }
+}
