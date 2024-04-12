@@ -24,3 +24,27 @@ describe('тесты факториала',()=>{
         expect(factorial(5)).toBe(120);
     });
 })
+
+describe('тесты с beforeEach (setup) и afterEach (teardown)', ()=>{
+    let a = 0;
+
+    // setup
+    beforeEach(()=>{
+        a = 5;
+    })
+
+    // teardown
+    afterEach(()=>{
+        a = null;
+    })
+
+    test('', ()=>{
+        expect(sum(a, 10)).toBe(15)
+        a = 10;
+        expect(sum(a,10)).toBe(20);
+    })
+
+    test('', ()=>{
+        expect(sum(a, 10)).toBe(15)
+    })
+})
