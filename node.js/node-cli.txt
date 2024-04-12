@@ -3,7 +3,7 @@
 Изучите получившийся package.json
 
 3. Установите пакет date-fns (npm install date-fns --save)
-4. Посмотрите установленные пакеты в текущей папке командой node list
+4. Посмотрите установленные пакеты в текущей папке командой npm list
 5. В файле test.js импортируйте библиотеку import { compareAsc, format } from 'date-fns'
 6. Выведите форматированную дату format(new Date(2014, 1, 11), 'yyyy-MM-dd')
 
